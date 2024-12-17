@@ -32,6 +32,7 @@ const SignUp = () => {
     // Start sign-up process using email and password provided
     try {
       await signUp.create({
+        username: form.name,
         emailAddress: form.email,
         password: form.password,
       });
@@ -55,6 +56,7 @@ const SignUp = () => {
   // Handle submission of verification form
   const onVerifyPress = async () => {
     if (!isLoaded) return;
+    console.log("STRAT_VERIFICATION");
 
     try {
       // Use the code the user provided to attempt verification
@@ -65,6 +67,7 @@ const SignUp = () => {
 
       // If verification was completed, set the session to active
       // and redirect the user
+
       if (signUpAttempt.status === "complete") {
         await fetchAPI("/(api)/user", {
           method: "POST",
@@ -82,7 +85,7 @@ const SignUp = () => {
         setVerification({
           ...verification,
           state: "failed",
-          error: "Verification failed",
+          error: `Verification failed,pease try again`,
         });
       }
     } catch (err: any) {
