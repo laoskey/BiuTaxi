@@ -1,15 +1,18 @@
 import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
 import { Link } from "expo-router";
-import { SafeAreaView, Text, View } from "react-native";
+import { FlatList, SafeAreaView, Text, View } from "react-native";
+import { mockRecentRides } from "@/lib/mock";
+import RideCard from "@/components/Biu/RideCard";
 
 export default function Page() {
   const { user } = useUser();
 
   return (
     <SafeAreaView>
-      <SignedIn>
-        <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
-      </SignedIn>
+      <FlatList
+        data={mockRecentRides?.slice(0, 5)}
+        renderItem={({ item }) => <RideCard ride={item} />}
+      />
     </SafeAreaView>
   );
 }
