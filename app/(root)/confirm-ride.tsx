@@ -1,4 +1,5 @@
 import CustomButton from "@/components/Biu/CustomButton";
+import DriverCard from "@/components/Biu/DriverCard";
 import RideLayout from "@/components/Biu/RideLayout";
 import { useDriversStore } from "@/lib";
 import { router } from "expo-router";
