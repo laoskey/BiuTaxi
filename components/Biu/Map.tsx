@@ -55,6 +55,7 @@ function Map() {
       showsUserLocation={true}
       userInterfaceStyle="light"
     >
+      {/* TODO:use the Baidu Map SDK insted the GoogleMap */}
       {markers.map((marker) => (
         <Marker
           key={marker.id}
