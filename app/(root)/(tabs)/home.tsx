@@ -1,6 +1,6 @@
 import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
 import * as Location from "expo-location";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import {
   ActivityIndicator,
   ActivityIndicatorBase,
@@ -26,8 +26,23 @@ export default function Page() {
   const [hasPermissions, setHasPermissions] = useState(false);
 
   const loading = true;
-  const handleSignOut = () => {};
-  const handleDestinationPress = () => {};
+  const handleSignOut = () => {
+    // TODO: Delete this line
+    setDestinationLocation({
+      longitude: 120.22,
+      latitude: 35.88,
+      address: "QinDao",
+    });
+    router.push("/(root)/find-ride");
+  };
+  const handleDestinationPress = (location: {
+    longitude: number;
+    latitude: number;
+    address: string;
+  }) => {
+    setDestinationLocation(location);
+    router.push("/(root)/find-ride");
+  };
 
   useEffect(() => {
     const requestLocation = async () => {
